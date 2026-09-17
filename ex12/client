@@ -1,0 +1,11 @@
+import socket
+HOST = "127.0.0.1"
+PORT = 8000
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Connect to MITM relay
+client.connect((HOST, PORT))
+message = input("Enter message: ")
+client.send(message.encode())
+reply = client.recv(1024)
+print("Reply from Server:", reply.decode())
+client.close()
